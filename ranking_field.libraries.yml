@@ -1,0 +1,12 @@
+ranking-field-lib:
+  version: 1.0
+  js:
+    js/saveCookie.js : {}
+    js/rankingField.js : {}
+  css:
+    theme:
+      css/ranking.css: {}
+      css/icons.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

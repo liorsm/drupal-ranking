@@ -1,0 +1,13 @@
+<div  class="hover ranking-field-wrapper" data-field-name="{{ data.field }}" data-nid="{{ data.nid }}">
+    <div class="ranking-group">
+        <input disabled checked class="ranking-input ranking-input--none" name="ranking" id="ranking-none" value="0"
+               type="radio">
+        {% for i in 1..5 %}
+            <label aria-label="{{ i }} star" class="ranking-label" for="rating-{{ i }}">
+                <i class="ranking-icon ranking-icon--star icon-star_solid"></i>
+            </label>
+            <input {{ i == data.average|round ? 'checked' : '' }} class="ranking-input" name="ranking"
+                   id="rating-{{ i }}" value="{{ i }}" type="radio">
+        {% endfor %}
+    </div>
+</div>

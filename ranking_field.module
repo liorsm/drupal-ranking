@@ -1,0 +1,62 @@
+<?php
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ */
+function ranking_field_theme() {
+
+    return [
+        'ranking_field' => [
+            'variables' => ['data' => NULL],
+            'template' => 'ranking-field',
+        ],
+    ];
+
+}
+
+/**
+ * Implements hook_entity_display_build_alter().
+ */
+function ranking_field_entity_display_build_alter(&$build, $context) {
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
+    $entity = $context['entity'];
+    /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display */
+    $display = $context['display'];
+    foreach (Element::children($build) as $field_name) {
+
+        if ($entity->get($field_name)->isEmpty()) {
+
+
+            $definition = $entity->get($field_name)->getFieldDefinition();
+            $component = $display->getComponent($field_name);
+
+            if($definition->getType() == 'ranking_field'){
+                $build[$field_name] = [
+                        '#theme' => 'ranking_field',
+                        '#title' => $definition->getLabel(),
+                        '#label_display' => $component['label'],
+                        '#view_mode' => $context['view_mode'],
+                        '#language' => $entity->get($field_name)->getLangcode(),
+                        '#field_name' => $definition->getName(),
+                        '#field_translatable' => $definition->isTranslatable(),
+                        '#entity_type' => $entity->getEntityTypeId(),
+                        '#bundle' => $entity->bundle(),
+                        '#field_type' => 'string',
+                        '#object' => $entity,
+                        '#is_multiple' => FALSE,
+                        '#attached' => [
+                            'library' => ['ranking_field/ranking-field-lib'],
+                        ],
+                        '#data' => [
+                            'average' => 0,
+                            'field' => $definition->getName(),
+                            'nid' => $entity->id()
+                        ],
+                    ] + $build[$field_name];
+
+                echo  '';
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.ranking-field-wrapper .ranking-group {
+    direction: ltr;
+    display: inline-flex;
+}
+
+/*.ranking-field-wrapper .ranking-group i{
+    background: url("../images/heart.png");
+}*/
+
+.ranking-field-wrapper .ranking-icon {
+    pointer-events: none;
+}
+
+.ranking-field-wrapper .ranking-input {
+    position: absolute !important;
+    visibility: hidden;
+}
+
+.ranking-field-wrapper .ranking-input--none {
+    display: none;
+}
+
+.ranking-field-wrapper .ranking-label {
+    cursor: pointer;
+    padding: 0 0.1em;
+    font-size: 2rem;
+}
+
+.ranking-field-wrapper .ranking-icon--star {
+    color: gold;
+    font-size: 23px;
+}
+
+.ranking-field-wrapper .ranking-input:checked ~ .ranking-label .ranking-icon--star {
+    color: #bdbcbc;
+}
+
+.ranking-field-wrapper.hover .ranking-group:hover .ranking-label .ranking-icon--star {
+    color: gold;
+}
+
+.ranking-field-wrapper.hover .ranking-input:hover ~ .ranking-label .ranking-icon--star {
+    color: #ddd;
+}
+
+

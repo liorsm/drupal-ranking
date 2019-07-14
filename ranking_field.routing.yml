@@ -1,0 +1,7 @@
+ranking_field.registercomplete:
+  path: '/update-rank'
+  defaults:
+    _controller: '\Drupal\ranking_field\Controller\RankingController::updateRank'
+    _title: 'update rank'
+  requirements:
+    _permission: 'access content'
